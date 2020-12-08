@@ -16,7 +16,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd src
+      yarn install
       yarn start
       yarn test
       yarn build
