@@ -1,5 +1,6 @@
 # Node.js with React
 
+
 # Build a Node.js project that uses React.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -11,8 +12,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Yarn@3
+- task: Bash@3
   inputs:
-    productionMode: true
-    customRegistry: 'useFeed'
-    customFeed: '7cdfd50a-3937-4339-baaf-8775b12e9773'
+    targetType: 'inline'
+    script: |
+      yarn start
+      yarn test
+      yarn build
+- task: PublishTestResults@2
+  inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/TEST-*.xml'
