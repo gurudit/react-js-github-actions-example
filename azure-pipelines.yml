@@ -17,7 +17,6 @@ steps:
     targetType: 'inline'
     script: |
       yarn install
-      yarn start
       yarn test
       yarn build
 - task: PublishTestResults@2
